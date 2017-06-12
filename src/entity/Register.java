@@ -27,11 +27,13 @@ public class Register implements Runnable {
         Customer customer;
         while ((customer = queue.poll()) != null)
         {
-            totalTime += customer.putGoodsOnTheLine();
+            CashierStrategy strategy = cashier.strategy(customer.getClass());
+            totalTime += strategy.communicate(customer);
+            /*totalTime += customer.putGoodsOnTheLine();
             totalTime += cashier.beepTheGoods();
             totalTime += cashier.callAmount();
             totalTime += customer.payForGoods();
-            totalTime += cashier.giveChangeAndReceipt();
+            totalTime += cashier.giveChangeAndReceipt();*/
             numberOfCustomers++;
         }
         System.out.println("It was " + numberOfCustomers + " customers and it took " + totalTime + " second");

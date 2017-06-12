@@ -5,9 +5,12 @@ package entity;
  */
 public interface Cashier {
 
+    CashierStrategy strategy(Class customerClass);
+    /*
     int beepTheGoods();
 
     int callAmount();
 
-    int giveChangeAndReceipt();
+    int giveChangeAndReceipt();*/
+
 }

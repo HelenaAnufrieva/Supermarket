@@ -5,8 +5,10 @@ package entity;
  */
 public interface Customer {
 
+    int buyThings();
+    /*
     int putGoodsOnTheLine();
 
-    int payForGoods();
+    int payForGoods();*/
 
 }
