@@ -2,6 +2,7 @@ package entity;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 /**
  * Created by Hillel2 on 08.06.2017.
@@ -27,6 +28,9 @@ public class Register implements Runnable {
         Customer customer;
         while ((customer = queue.poll()) != null)
         {
+
+//            if (new Random().nextBoolean())
+//                newCustomer(customer);
             CashierStrategy strategy = cashier.strategy(customer.getClass());
             totalTime += strategy.communicate(customer);
             /*totalTime += customer.putGoodsOnTheLine();
