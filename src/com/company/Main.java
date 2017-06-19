@@ -9,16 +9,38 @@ import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Register register = new Register(randomCashier());
-        /*Register anotherRegister = new Register(new NormalCashier());
-        Random random = new Random();
-        for (int i = 0; i < random.nextInt(100); i++)
-            register.newCustomer(new RandomizedCustomer());*/
+    public static void main(String[] args) throws InterruptedException {
+        Main main = new Main();
 
+        /*ExecutorService pool = Executors.newCachedThreadPool(new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread thread = new Thread(r);
+                thread.setName("name");
+                thread.setPriority(10);
+                thread.setDaemon(true);
+                return thread;
+            }
+        }); // factory
+*/
+
+        ExecutorService pool = Executors.newFixedThreadPool(5);
+
+        for (int i = 0; i < 5; i++)
+            pool.submit(main.newRegister());
+
+        /*register.run();*/
+        Thread.currentThread().sleep(1);
+        pool.shutdownNow();
+        System.out.println("all done");
+    }
+
+    private Register newRegister()
+    {
+        Register register = new Register(randomCashier());
         for (int i = 0; i < 10; i++)
             register.newCustomer(randomCustomer());
-        register.run();
+        return  register;
     }
 
     private static Customer randomCustomer()
