@@ -6,6 +6,8 @@ import entity.cashiers.NormalCashier;
 import entity.customers.AnotherCustomer;
 import entity.customers.RandomizedCustomer;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
